@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import express from 'express';
 import {
   getAllFeedbacks,
   getFeedback,
@@ -6,8 +6,14 @@ import {
   getFeedbackSummary
 } from '../controllers/feedbackController.js';
 
-const router = Router();
+const router = express.Router();
 
-// TODO: wire up the three routes in README.md section 2 and the summary route in section 3.
+// Static routes first
+router.get('/summary', getFeedbackSummary);
+
+// Dynamic routes
+router.get('/', getAllFeedbacks);
+router.get('/:id', getFeedback);
+router.post('/', createFeedback);
 
 export default router;
